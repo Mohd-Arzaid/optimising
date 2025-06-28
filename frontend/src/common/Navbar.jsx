@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { memo, useMemo, useState, useEffect, useRef, useCallback } from "react";
 import PropTypes from "prop-types";
-import companyLogo from "../assets/company-logo/company-logo.svg";
+import companyLogo from "../assets/company-logo/company-logo.png";
 import {
   NavigationMenu,
   NavigationMenuContent,
