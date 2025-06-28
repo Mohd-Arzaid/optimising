@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { memo, useMemo, useState, useEffect, useRef, useCallback } from "react";
 import PropTypes from "prop-types";
-import companyLogo from "../assets/company-logo/company-logo.png";
+import companyLogo from "../assets/company-logo/company-logo.svg";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -41,228 +41,228 @@ const NAVIGATION_DATA = Object.freeze({
   categories: Object.freeze([
     Object.freeze({
       id: "bis-foreign",
-    name: "BIS Mark (Foreign)",
-    link: "/a-guide-to-bis-certification-for-foreign-manufacturers-indian-bis",
+      name: "BIS Mark (Foreign)",
+      link: "/a-guide-to-bis-certification-for-foreign-manufacturers-indian-bis",
       icon: CheckCircle,
       desktopOrder: 1,
       mobileOrder: 1,
     }),
-  {
+    {
       id: "crs-reg",
-    name: "CRS Registration",
-    link: "/what-is-crs-bis-or-crs-registration",
+      name: "CRS Registration",
+      link: "/what-is-crs-bis-or-crs-registration",
       icon: ShieldCheck,
       desktopOrder: 2,
       mobileOrder: 7,
-  },
-  {
+    },
+    {
       id: "ce-cert",
-    name: "CE Certification",
-    link: "/ce-certification",
+      name: "CE Certification",
+      link: "/ce-certification",
       icon: ShieldCheck,
       desktopOrder: 3,
       mobileOrder: 14,
-  },
-  {
+    },
+    {
       id: "isi-indian",
-    name: "ISI Mark (Indian)",
-    link: "/a-guide-to-bis-certification-indian-bis",
+      name: "ISI Mark (Indian)",
+      link: "/a-guide-to-bis-certification-indian-bis",
       icon: Award,
       desktopOrder: 4,
       mobileOrder: 2,
-  },
-  {
+    },
+    {
       id: "scheme-x",
-    name: "Scheme X",
-    link: "/schemeX",
+      name: "Scheme X",
+      link: "/schemeX",
       icon: Cpu,
       desktopOrder: 5,
       mobileOrder: 8,
-  },
-  {
+    },
+    {
       id: "epr-reg",
-    name: "EPR Registration",
-    link: "/a-guide-on-how-to-obtain-epr-certificate",
+      name: "EPR Registration",
+      link: "/a-guide-on-how-to-obtain-epr-certificate",
       icon: Recycle,
       desktopOrder: 6,
       mobileOrder: 9,
-  },
-  {
+    },
+    {
       id: "rohs",
-    name: "ROHS",
-    link: "/restriction-of-hazardous-substance-rohs-certificate",
+      name: "ROHS",
+      link: "/restriction-of-hazardous-substance-rohs-certificate",
       icon: Radiation,
       desktopOrder: 7,
       mobileOrder: 15,
-  },
-  {
+    },
+    {
       id: "bis-cert",
-    name: "BIS Certification",
-    link: "/what-is-bis-certificate-indian-bis",
+      name: "BIS Certification",
+      link: "/what-is-bis-certificate-indian-bis",
       icon: CheckCircle,
       desktopOrder: 8,
       mobileOrder: 3,
-  },
-  {
+    },
+    {
       id: "plastic-waste",
-    name: "Plastic Waste",
-    link: "/epr-certificate-for-plastic-waste-management-pwm",
+      name: "Plastic Waste",
+      link: "/epr-certificate-for-plastic-waste-management-pwm",
       icon: Recycle,
       desktopOrder: 9,
       mobileOrder: 10,
-  },
-  {
+    },
+    {
       id: "emi-emc",
-    name: "EMI/EMC",
-    link: "/emi-emc-certification",
+      name: "EMI/EMC",
+      link: "/emi-emc-certification",
       icon: Cpu,
       desktopOrder: 10,
       mobileOrder: 16,
-  },
-  {
+    },
+    {
       id: "cdsco-reg",
-    name: "CDSCO Registration",
-    link: "/cdsco-registration-certification",
+      name: "CDSCO Registration",
+      link: "/cdsco-registration-certification",
       icon: FileWarning,
       desktopOrder: 11,
       mobileOrder: 4,
-  },
-  {
+    },
+    {
       id: "battery-waste",
-    name: "Battery Waste",
-    link: "/epr-certificate-for-battery-waste-management-bwm",
+      name: "Battery Waste",
+      link: "/epr-certificate-for-battery-waste-management-bwm",
       icon: Battery,
       desktopOrder: 12,
       mobileOrder: 11,
-  },
-  {
+    },
+    {
       id: "tec",
-    name: "TEC",
-    link: "/information-about-tec-certificate-mtcte",
+      name: "TEC",
+      link: "/information-about-tec-certificate-mtcte",
       icon: Radio,
       desktopOrder: 13,
       mobileOrder: 17,
-  },
-  {
+    },
+    {
       id: "lmpc-reg",
-    name: "LMPC Registration",
-    link: "/a-guide-on-how-to-obtain-lmpc-certificate",
+      name: "LMPC Registration",
+      link: "/a-guide-on-how-to-obtain-lmpc-certificate",
       icon: BookText,
       desktopOrder: 14,
       mobileOrder: 5,
-  },
-  {
+    },
+    {
       id: "peso",
-    name: "PESO",
-    link: "/information-about-peso-certification-peso-license-india",
+      name: "PESO",
+      link: "/information-about-peso-certification-peso-license-india",
       icon: Flame,
       desktopOrder: 15,
       mobileOrder: 12,
-  },
-  {
+    },
+    {
       id: "bee",
-    name: "BEE",
-    link: "/bee-certification",
+      name: "BEE",
+      link: "/bee-certification",
       icon: Zap,
       desktopOrder: 16,
       mobileOrder: 18,
-  },
-  {
+    },
+    {
       id: "legal-metrology",
-    name: "Legal Metrology",
-    link: "/what-is-legal-metrology-or-lmpc-certificate",
+      name: "Legal Metrology",
+      link: "/what-is-legal-metrology-or-lmpc-certificate",
       icon: Scale,
       desktopOrder: 17,
       mobileOrder: 6,
-  },
-  {
+    },
+    {
       id: "wpc",
-    name: "WPC",
-    link: "/information-about-wpc-certificate-eta-approval",
+      name: "WPC",
+      link: "/information-about-wpc-certificate-eta-approval",
       icon: Wifi,
       desktopOrder: 18,
       mobileOrder: 13,
-  },
-  {
+    },
+    {
       id: "cb-cert",
-    name: "CB Certification",
-    link: "/cb-certification",
+      name: "CB Certification",
+      link: "/cb-certification",
       icon: Award,
       desktopOrder: 19,
       mobileOrder: 19,
-  },
+    },
   ]),
   updates: [
     {
       id: "bis-qco",
-    name: "BIS QCO UPDATES",
-    link: "/bis-qco-updates",
+      name: "BIS QCO UPDATES",
+      link: "/bis-qco-updates",
       icon: BookText,
-  },
-  {
+    },
+    {
       id: "ministry",
-    name: "Ministry Updates",
-    link: "/ministry-updates",
+      name: "Ministry Updates",
+      link: "/ministry-updates",
       icon: FileWarning,
-  },
-  {
+    },
+    {
       id: "webinars",
-    name: "Upcoming Webinars",
-    link: "/webinar",
+      name: "Upcoming Webinars",
+      link: "/webinar",
       icon: Presentation,
-  },
-  {
+    },
+    {
       id: "videos",
-    name: "Video About BIS Certification",
-    link: "/videos-about-bis-certification",
+      name: "Video About BIS Certification",
+      link: "/videos-about-bis-certification",
       icon: Video,
-  },
+    },
   ],
   gallery: [
-  {
+    {
       id: "audits",
-    name: "International Audits",
-    link: "/international-audits",
+      name: "International Audits",
+      link: "/international-audits",
       icon: FileCheck,
-  },
-  {
+    },
+    {
       id: "seminars",
-    name: "Seminars/Exhibitions",
-    link: "/seminars-and-exhibitions",
+      name: "Seminars/Exhibitions",
+      link: "/seminars-and-exhibitions",
       icon: GalleryHorizontal,
-  },
+    },
   ],
   faqs: [
-  {
+    {
       id: "bis-licence",
-    name: "BIS Licence",
-    link: "/faq-bis-licence",
+      name: "BIS Licence",
+      link: "/faq-bis-licence",
       icon: Award,
-  },
-  {
+    },
+    {
       id: "bis-registration",
-    name: "BIS Registration",
-    link: "/faq-bis-registration",
+      name: "BIS Registration",
+      link: "/faq-bis-registration",
       icon: CheckCircle,
-  },
-  {
+    },
+    {
       id: "cdsco-licence",
-    name: "CDSCO Licence",
-    link: "/faq-cdsco-licence",
+      name: "CDSCO Licence",
+      link: "/faq-cdsco-licence",
       icon: FileCheck,
-  },
-  {
+    },
+    {
       id: "cdsco-registration",
-    name: "CDSCO Registration",
-    link: "/faq-cdsco-registration",
+      name: "CDSCO Registration",
+      link: "/faq-cdsco-registration",
       icon: BookText,
-  },
-  {
+    },
+    {
       id: "foreign-bis",
-    name: "Foreign Manufacturer BIS",
-    link: "/faq-foreign-manufacturer-bis",
+      name: "Foreign Manufacturer BIS",
+      link: "/faq-foreign-manufacturer-bis",
       icon: ShieldCheck,
-  },
+    },
   ],
 });
 
@@ -281,14 +281,16 @@ const STYLES = Object.freeze({
 });
 
 // 📱 Reusable mobile navigation item with performance optimization
-const MobileNavItem = memo(({ item, onClose, className = STYLES.mobileSubButton }) => (
-  <Link to={item.link} className="block w-full" onClick={onClose}>
-    <Button variant="ghost" className={className}>
-      <item.icon className="w-4 h-4 mr-2" />
-      {item.name}
-    </Button>
-  </Link>
-));
+const MobileNavItem = memo(
+  ({ item, onClose, className = STYLES.mobileSubButton }) => (
+    <Link to={item.link} className="block w-full" onClick={onClose}>
+      <Button variant="ghost" className={className}>
+        <item.icon className="w-4 h-4 mr-2" />
+        {item.name}
+      </Button>
+    </Link>
+  )
+);
 
 MobileNavItem.displayName = "MobileNavItem";
 
@@ -334,13 +336,13 @@ const Navbar = memo(() => {
     const createDesktopItems = (items) =>
       items.map((item) => (
         <NavigationMenuLink key={item.id} asChild>
-            <Link to={item.link} className="block">
+          <Link to={item.link} className="block">
             <div className={STYLES.menuItem}>
               <item.icon className="w-4 h-4 mr-2" />
-                <span>{item.name}</span>
-              </div>
-            </Link>
-          </NavigationMenuLink>
+              <span>{item.name}</span>
+            </div>
+          </Link>
+        </NavigationMenuLink>
       ));
 
     // Sort categories for desktop and mobile separately - memoized sorting
@@ -507,7 +509,7 @@ const Navbar = memo(() => {
           </NavigationMenu>
         </div>
 
-                {/* Mobile Menu Button */}
+        {/* Mobile Menu Button */}
         <button
           ref={buttonRef}
           onClick={() => setIsOpen(!isOpen)}
@@ -554,7 +556,7 @@ const MobileNavbarMenu = memo(
         if (buttonRef?.current?.contains(event.target)) {
           return; // Let button handle its own click
         }
-        
+
         if (menuRef.current && !menuRef.current.contains(event.target)) {
           closeMobileMenu(); // Close when clicking outside menu area
         }
@@ -563,7 +565,9 @@ const MobileNavbarMenu = memo(
       // Use passive listeners for better scroll performance
       window.addEventListener("scroll", handleScroll, { passive: true });
       document.addEventListener("mousedown", handleOutsideClick);
-      document.addEventListener("touchstart", handleOutsideClick, { passive: true });
+      document.addEventListener("touchstart", handleOutsideClick, {
+        passive: true,
+      });
 
       // 🧹 Cleanup to prevent memory leaks
       return () => {
@@ -573,25 +577,25 @@ const MobileNavbarMenu = memo(
       };
     }, [closeMobileMenu, buttonRef]);
 
-  return (
+    return (
       <div
         ref={menuRef}
         className="md:hidden absolute top-full left-0 w-full bg-white border-t border-b border-neutral-200 shadow-lg z-40 max-h-[80vh] overflow-y-auto scrollbar-hide"
       >
-      <div className="px-4 py-4 space-y-1">
-        {/* Home */}
+        <div className="px-4 py-4 space-y-1">
+          {/* Home */}
           <Link to="/" className="block w-full" onClick={closeMobileMenu}>
             <Button variant="ghost" className={STYLES.mobileButton}>
-            Home
-          </Button>
-        </Link>
+              Home
+            </Button>
+          </Link>
 
-        {/* About */}
+          {/* About */}
           <Link to="/about" className="block w-full" onClick={closeMobileMenu}>
             <Button variant="ghost" className={STYLES.mobileButton}>
-            About
-          </Button>
-        </Link>
+              About
+            </Button>
+          </Link>
 
           {/* Services */}
           <MobileSection
@@ -629,19 +633,19 @@ const MobileNavbarMenu = memo(
             onClose={closeMobileMenu}
           />
 
-        {/* Contact Us */}
+          {/* Contact Us */}
           <Link
             to="/contact"
             className="block w-full"
             onClick={closeMobileMenu}
           >
             <Button variant="ghost" className={STYLES.mobileButton}>
-            Contact Us
-          </Button>
-        </Link>
+              Contact Us
+            </Button>
+          </Link>
+        </div>
       </div>
-    </div>
-  );
+    );
   }
 );
 
