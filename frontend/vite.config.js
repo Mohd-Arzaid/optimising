@@ -10,12 +10,20 @@ export default defineConfig({
     },
   },
   build: {
-    // Enable Terser minification for production builds
     minify: "terser",
     terserOptions: {
       compress: {
-        drop_console: true, // Remove all console.log statements in production
-        drop_debugger: true, // Remove debugger statements
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom"],
+          ui: ["@radix-ui/react-navigation-menu", "@radix-ui/react-accordion"],
+          icons: ["lucide-react"],
+        },
       },
     },
   },
