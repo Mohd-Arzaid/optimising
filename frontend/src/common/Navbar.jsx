@@ -379,10 +379,10 @@ const Navbar = memo(() => {
   // ✅ Close mobile menu when clicking outside or on links
   const closeMobileMenu = useCallback(() => setIsOpen(false), []);
 
-  // 🔄 Optimized route change handler - only reset if sections are actually open
+  // 🔄 Optimized route change handler - clean and simple
   const resetMobileState = useCallback(() => {
-    setOpenSections(prev => prev.size > 0 ? new Set() : prev); // Only reset if needed
-    setIsOpen(prev => prev ? false : prev); // Only update if actually open
+    setOpenSections(new Set()); // React handles unnecessary re-renders automatically
+    setIsOpen(false); // React's built-in optimization works here
   }, []);
 
   // 🔄 Reset mobile dropdown sections when route changes for better UX
