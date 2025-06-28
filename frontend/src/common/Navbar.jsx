@@ -327,6 +327,7 @@ const Navbar = memo(() => {
   const [isOpen, setIsOpen] = useState(false);
   const [openSections, setOpenSections] = useState(new Set());
   const location = useLocation();
+  const buttonRef = useRef(null);
 
   // ✅ Optimized menu items with proper ordering and deep memoization
   const menuItems = useMemo(() => {
@@ -506,15 +507,16 @@ const Navbar = memo(() => {
           </NavigationMenu>
         </div>
 
-        {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
+                {/* Mobile Menu Button */}
+        <button
+          ref={buttonRef}
+          onClick={() => setIsOpen(!isOpen)}
           className="md:hidden text-black focus:outline-none "
           aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+        >
+          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
       </div>
 
       {/* Mobile Navigation */}
@@ -524,6 +526,7 @@ const Navbar = memo(() => {
           menuItems={menuItems}
           openSections={openSections}
           toggleSection={toggleSection}
+          buttonRef={buttonRef}
         />
       )}
     </nav>
@@ -535,7 +538,7 @@ Navbar.displayName = "Navbar";
 export default Navbar;
 
 const MobileNavbarMenu = memo(
-  ({ closeMobileMenu, menuItems, openSections, toggleSection }) => {
+  ({ closeMobileMenu, menuItems, openSections, toggleSection, buttonRef }) => {
     const menuRef = useRef(null);
 
     // 📱 Optimized mobile UX with efficient event handling
@@ -545,8 +548,13 @@ const MobileNavbarMenu = memo(
         closeMobileMenu(); // Close immediately on scroll
       };
 
-      // Optimized outside click handler with early return
+      // Optimized outside click handler with button exclusion for proper toggle
       const handleOutsideClick = (event) => {
+        // Exclude button clicks to prevent toggle conflicts
+        if (buttonRef?.current?.contains(event.target)) {
+          return; // Let button handle its own click
+        }
+        
         if (menuRef.current && !menuRef.current.contains(event.target)) {
           closeMobileMenu(); // Close when clicking outside menu area
         }
@@ -563,7 +571,7 @@ const MobileNavbarMenu = memo(
         document.removeEventListener("mousedown", handleOutsideClick);
         document.removeEventListener("touchstart", handleOutsideClick);
       };
-    }, [closeMobileMenu]);
+    }, [closeMobileMenu, buttonRef]);
 
   return (
       <div
@@ -644,6 +652,7 @@ MobileNavbarMenu.propTypes = {
   menuItems: PropTypes.object.isRequired,
   openSections: PropTypes.instanceOf(Set).isRequired,
   toggleSection: PropTypes.func.isRequired,
+  buttonRef: PropTypes.object.isRequired,
 };
 
 MobileNavItem.propTypes = {
